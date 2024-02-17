@@ -28,13 +28,8 @@ public class Layout {
     Button nextweek;
 
     ToggleGroup group;
-    RadioButton r1;
-    RadioButton r2;
-    RadioButton r3;
-    RadioButton r4;
-    RadioButton r5;
-    RadioButton r6;
-    RadioButton r7;
+
+    RadioButton[] radios;
     Integer week = 0;
     Integer filled = 0;
     Integer funds = 0;
@@ -54,13 +49,14 @@ public class Layout {
             resizeButton[i] = new Button((i + 1) + "x" + (i + 1));
         }
 
-        r1 = new RadioButton("Table");
-        r2 = new RadioButton("Cat");
-        r3 = new RadioButton("Kitten");
-        r4 = new RadioButton("Empty");
-        r5 = new RadioButton("View");
-        r6 = new RadioButton("Lion");
-        r7 = new RadioButton("Flerken");
+        String[] radioString = {"Table", "Lion", "Flerken", "Cat", "Kitten", "Empty", "View"};
+
+        // Initializing the radio button array.
+        radios = new RadioButton[7];
+        for(i = 0; i < radios.length; i++)
+        {
+            radios[i] = new RadioButton(radioString[i]);
+        }
 
         nextweek = new Button("Next Week");
 
@@ -140,6 +136,7 @@ public class Layout {
         panel = new GridPane();
         panel.setAlignment(Pos.CENTER);
 
+        // Setting up some more column constraints.
         ColumnConstraints colleft = new ColumnConstraints();
         colleft.setPercentWidth(15);
         ColumnConstraints colmid = new ColumnConstraints();
@@ -149,6 +146,7 @@ public class Layout {
         colright.setPercentWidth(25);
         panel.getColumnConstraints().addAll(colleft, colmid, colright);
 
+        // Setting up some more row constraints.
         RowConstraints rowtop = new RowConstraints();
         rowtop.setPercentHeight(50);
         rowtop.setValignment(VPos.CENTER);
@@ -159,32 +157,16 @@ public class Layout {
 
         panel.add(nextweek, 0, 1);
 
-        // I would loop this, but I'm too lazy and it works.
-        r1.setToggleGroup(group);
-        r2.setToggleGroup(group);
-        r3.setToggleGroup(group);
-        r4.setToggleGroup(group);
-        r5.setToggleGroup(group);
-        r6.setToggleGroup(group);
-        r7.setToggleGroup(group);
-
-        r1.setPadding(new Insets(4, 4, 4, 4));
-        r2.setPadding(new Insets(4, 4, 4, 4));
-        r3.setPadding(new Insets(4, 4, 4, 4));
-        r4.setPadding(new Insets(4, 4, 4, 4));
-        r5.setPadding(new Insets(4, 4, 4, 4));
-        r6.setPadding(new Insets(4, 4, 4, 4));
-        r7.setPadding(new Insets(4, 4, 4, 4));
-
         HBox radioBox = new HBox();
 
-        radioBox.getChildren().add(r1);
-        radioBox.getChildren().add(r6);
-        radioBox.getChildren().add(r7);
-        radioBox.getChildren().add(r2);
-        radioBox.getChildren().add(r3);
-        radioBox.getChildren().add(r4);
-        radioBox.getChildren().add(r5);
+        // Setting up and adding the radio buttons to the horizontal box.
+        for(i = 0; i < radios.length; i++)
+        {
+            radios[i].setToggleGroup(group);
+            radios[i].setPadding(new Insets(4, 4, 4, 4));
+            radioBox.getChildren().add(radios[i]);
+        }
+
         radioBox.setAlignment(Pos.CENTER);
         panel.add(radioBox, 1, 0);
 
@@ -192,6 +174,7 @@ public class Layout {
         Label resize = new Label("Resize ");
         hbox.getChildren().add(resize);
 
+        // Adding the resize buttons to the view, hiding some.
         for(i = 0; i < 9; i++)
         {
             if(i != 2 && i != 4 && i != 8) {

@@ -68,20 +68,14 @@ public class Main extends Application {
         layout = new Layout();
         Scene scene = new Scene(layout.root, x*0.65, y*0.5);
 
-        // Would love to loop this, but not sure how with the KeyCode changing each time.
-        KeyCombination[] keys = new KeyCodeCombination[9];
-        keys[0] = new KeyCodeCombination(KeyCode.DIGIT1);
-        keys[1] = new KeyCodeCombination(KeyCode.DIGIT2);
-        keys[2] = new KeyCodeCombination(KeyCode.DIGIT3);
-        keys[3] = new KeyCodeCombination(KeyCode.DIGIT4);
-        keys[4] = new KeyCodeCombination(KeyCode.DIGIT5);
-        keys[5] = new KeyCodeCombination(KeyCode.DIGIT6);
-        keys[6] = new KeyCodeCombination(KeyCode.DIGIT7);
-        keys[7] = new KeyCodeCombination(KeyCode.DIGIT8);
-        keys[8] = new KeyCodeCombination(KeyCode.DIGIT9);
+        // Setting an array of the resizing key codes.
+        KeyCode[] keycode = new KeyCode[]{KeyCode.DIGIT1, KeyCode.DIGIT2, KeyCode.DIGIT3, KeyCode.DIGIT4, KeyCode.DIGIT5, KeyCode.DIGIT6, KeyCode.DIGIT7, KeyCode.DIGIT8, KeyCode.DIGIT9};
 
+        // Setting the key combinations and binding them to an action.
+        KeyCombination[] keys = new KeyCodeCombination[9];
         for(i = 0; i < 9; i++)
         {
+            keys[i] = new KeyCodeCombination(keycode[i]);
             layout.resizeButton[i].getScene().getAccelerators().put(keys[i], layout.resizeButton[i]::fire);
         }
 

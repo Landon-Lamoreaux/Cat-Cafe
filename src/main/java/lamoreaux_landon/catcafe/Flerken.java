@@ -19,6 +19,6 @@ public class Flerken extends FloorArea {
 
     public String getInfo(int week)
     {
-        return "Flerken" + "\nFloor Changed: " + week + "\nFloor Age: " + week + "\nTotal Cost: " + totalCost + "\nLion Age " + age + "\nWeeks Until Adoption: " + countdown;
+        return "Flerken" + "\nFloor Changed: " + week + "\nFloor Age: " + week + "\nTotal Cost: " + totalCost + "\nFlerken Age " + age + "\nWeeks Until Adoption: " + countdown;
     }
 }
